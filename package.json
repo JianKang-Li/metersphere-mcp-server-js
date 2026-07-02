@@ -1,0 +1,25 @@
+{
+  "name": "metersphere-mcp-server",
+  "version": "2.1.0",
+  "type": "module",
+  "description": "MeterSphere MCP Server - AI-powered testing platform bridge (supports v2 and v3 API)",
+  "main": "src/index.js",
+  "bin": {
+    "metersphere-mcp-server": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "start:stdio": "MCP_TYPE=stdio node src/index.js",
+    "start:stdio:v2": "MCP_TYPE=stdio MS_VERSION=v2 node src/index.js",
+    "start:sse": "node src/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.5.0",
+    "zod": "^3.25.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
