@@ -9,7 +9,8 @@ import { getServerConfig } from './server-config.js';
  */
 
 const CONTENT_TYPE_JSON = 'application/json';
-const TIMEOUT_MS = 10000;
+// 请求超时时间（毫秒），默认 30 秒，可通过 HTTP_TIMEOUT 环境变量调整
+const TIMEOUT_MS = parseInt(process.env.HTTP_TIMEOUT || '30000', 10);
 
 /**
  * 构建完整的 URL
@@ -97,7 +98,7 @@ export async function get(endpoint) {
     clearTimeout(timer);
     return await handleResponse(res);
   } catch (e) {
-    return '请求失败: ' + e.message;
+    throw new Error('请求失败: ' + e.message);
   }
 }
 
@@ -126,7 +127,7 @@ export async function post(endpoint, body) {
     clearTimeout(timer);
     return await handleResponse(res);
   } catch (e) {
-    return '请求失败: ' + e.message;
+    throw new Error('请求失败: ' + e.message);
   }
 }
 
@@ -158,6 +159,6 @@ export async function postPaged(endpoint, goPage, pageSize, body) {
     clearTimeout(timer);
     return await handleResponse(res);
   } catch (e) {
-    return '请求失败: ' + e.message;
+    throw new Error('请求失败: ' + e.message);
   }
 }
